@@ -1,0 +1,192 @@
+body {
+    background-color: #ccc;
+    text-align: center;
+
+    background-image: url("./images/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flexbox;
+    justify-content: center;
+    margin: auto;
+
+    display: grid;
+
+    max-height: 100vh;
+    min-height: 100vh;
+
+    font-family: 'Righteous', cursive;
+}
+
+h1 {
+
+    font-size: 10rem;
+    margin: auto;
+
+    color: #FF0000;
+
+
+    text-shadow: 0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0, 0, 0, .1),
+        0 0 5px rgba(0, 0, 0, .1),
+        0 1px 3px rgba(0, 0, 0, .3),
+        0 3px 5px rgba(0, 0, 0, .2),
+        0 5px 10px rgba(0, 0, 0, .25),
+        0 10px 10px rgba(0, 0, 0, .2),
+        0 20px 20px rgba(0, 0, 0, .15);
+
+
+    width: fit-content;
+    padding: 0 .5em;
+}
+
+.piece {
+    height: 19em;
+    width: 19em;
+    
+    z-index: 10;
+
+    /* transition: background-color .3s ease-out; */
+}
+
+
+
+.top-left-quarter-circle {
+
+    border-radius: 100% 0 0 0;
+    background-color: #EDCFC7;
+
+    border-top: 0;
+    border-left: 0;
+
+    margin: 0 2px 2px 0;
+}
+
+.top-right-quarter-circle {
+
+    border-radius: 0 100% 0 0;
+    background-color: #EDEAC7;
+
+    border-top: 0;
+    border-right: 0;
+
+    margin: 0 0 2px 2px;
+}
+
+.bottom-left-quarter-circle {
+
+    border-radius: 0 0 0 100%;
+
+    background-color: #C7EDE1;
+
+    border-bottom: 0;
+    border-left: 0;
+
+    margin:  2px 2px 0 0;
+
+}
+
+.bottom-right-quarter-circle {
+    border-radius: 0 0 100% 0;
+
+    background-color: #DAD3ED;
+
+    border-bottom: 0;
+    border-right: 0;
+
+    margin:  2px 0 0 2px ;
+}
+
+.background-circle,
+.reverse-rotate {
+    width: 39em;
+    height: 39em;
+
+    background-image:
+        linear-gradient(to bottom right,
+            hsl(231, 83.33%, 67.06%) 0%,
+            hsl(232.07, 81.53%, 67.26%) 8.1%,
+            hsl(235.31, 76.32%, 67.77%) 15.5%,
+            hsl(241.15, 68.35%, 67.97%) 22.5%,
+            hsl(249.37, 60.75%, 65.67%) 29%,
+            hsl(259.6, 52.7%, 62.86%) 35.3%,
+            hsl(272.15, 44.7%, 59.6%) 41.2%,
+            hsl(287.77, 37.06%, 55.94%) 47.1%,
+            hsl(306.92, 35.22%, 53.82%) 52.9%,
+            hsl(322.08, 42.95%, 54.81%) 58.8%,
+            hsl(333.24, 50.29%, 55.58%) 64.7%,
+            hsl(341.92, 56.97%, 56.14%) 71%,
+            hsl(348.91, 62.65%, 56.51%) 77.5%,
+            hsl(354.51, 67.06%, 56.73%) 84.5%,
+            hsl(358.47, 69.9%, 56.83%) 91.9%,
+            hsl(0, 70.91%, 56.86%) 100%);
+
+            background-color: black;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    flex-wrap: wrap;
+
+    border-radius: 50%;
+
+    position: relative;
+    /* border: #555 solid 3px; */
+}
+
+.score {
+    position: absolute;
+
+    width: 6em;
+    height: 6em;
+
+    background-color: black;
+
+    z-index: 20;
+
+    border-radius: 50%;
+
+    color: white;
+
+    text-align: center;
+
+    border: pink solid 5px;
+
+    /* line-height: 1.25em; */
+}
+
+.score p,
+br {
+    margin: 0;
+
+    position: relative;
+    top: 25%;
+
+    font-size: 1.5em;
+}
+
+
+
+footer{
+
+    position: relative;
+    left: 100%;
+
+    margin-top: 3em;
+
+    width: fit-content;
+    padding: 1em;
+
+    vertical-align: middle;
+
+    height: fit-content;
+    text-align: center;
+}
+
