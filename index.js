@@ -8,9 +8,13 @@ var trNote = new Audio("./Audio/G5_pp.flac");
 var blNote = new Audio("./Audio/G4_pp.flac");
 var brNote = new Audio("./Audio/C4_pp.flac");
 
-btnFlashTiming = 250;
+var btnFlashTiming = 250;
 
-tlPiece.on("click", function () {
+const SEQUENCE_OPTIONS = ["🔴", "🟡", "🟢", "🔵"]
+
+let sequence = [];
+
+function tlUiChange() {
     tlPiece.addClass("active-top-left");
     setTimeout(function () {
         tlPiece.removeClass("active-top-left");
@@ -18,9 +22,9 @@ tlPiece.on("click", function () {
 
     tlNote.load();
     tlNote.play();
-})
+}
 
-trPiece.on("click", function () {
+function trUiChange() {
     trPiece.addClass("active-top-right");
     setTimeout(function () {
         trPiece.removeClass("active-top-right");
@@ -28,9 +32,9 @@ trPiece.on("click", function () {
 
     trNote.load();
     trNote.play();
-})
+}
 
-blPiece.on("click", function () {
+function blUiChange() {
     blPiece.addClass("active-bottom-left");
     setTimeout(function () {
         blPiece.removeClass("active-bottom-left");
@@ -38,9 +42,9 @@ blPiece.on("click", function () {
 
     blNote.load();
     blNote.play();
-})
+}
 
-brPiece.on("click", function () {
+function brUiChange() {
     brPiece.addClass("active-bottom-right");
     setTimeout(function () {
         brPiece.removeClass("active-bottom-right");
@@ -48,21 +52,71 @@ brPiece.on("click", function () {
 
     brNote.load();
     brNote.play();
+}
+
+tlPiece.on("click", function () {
+    tlUiChange();
 })
+
+trPiece.on("click", function () {
+    trUiChange();
+})
+
+blPiece.on("click", function () {
+    blUiChange();
+})
+
+brPiece.on("click", function () {
+    brUiChange();
+})
+
+
 function randBetweenFour() {
     return Math.floor(Math.random() * 4);
 }
 
-const SEQUENCE_OPTIONS = ["🔴", "🟡", "🟢", "🔵"]
+function playSequence() {
 
-let sequence = [];
-
-
-for (let i = 0; i < 100; i++) {
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    for (let i = 0; i < sequence.length; i++) {
+        setTimeout(function () {
+            switch (sequence[i]) {
+                case "🔴":
+                    tlUiChange();
+                    break;
+                case "🟡":
+                    trUiChange();
+                    break;
+                case "🟢":
+                    blUiChange();
+                    break;
+                case "🔵":
+                    brUiChange();
+                    break;
+                default:
+                    break;
+            }
+        },i * 500);
+    }
 }
 
-console.log(sequence);
+function gameLoop() {
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    // sequence.push("🔴", "🟡", "🟢", "🔵");
+    // sequence.push("🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴");
+    playSequence();
+    console.log(sequence);
+    
+}
 
+
+gameLoop();
+
+
+
+// a
 
 

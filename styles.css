@@ -77,7 +77,7 @@ h1 {
     0% {background-color: #EDCFC7;
         border: solid white 5px;
     }
-    50% {background-color: red;}
+    50% {background-color: #f24432;}
     100% {background-color: #EDCFC7;}
 }
 
@@ -101,7 +101,7 @@ h1 {
     0% {background-color: #EDEAC7;
         border: solid white 5px;
     }
-    50% {background-color: yellow;}
+    50% {background-color: #e2fa42;}
     100% {background-color: #EDEAC7;}
 }
 
@@ -126,7 +126,7 @@ h1 {
     0% {background-color: #C7EDE1;
         border: solid white 5px;
     }
-    50% {background-color: green;}
+    50% {background-color: #0e9d71;}
     100% {background-color: #C7EDE1;}
 }
 
@@ -152,7 +152,7 @@ h1 {
     0% {background-color: #DAD3ED;
         border: solid white 5px;
     }
-    50% {background-color: blue;}
+    50% {background-color: #704fc6;}
     100% {background-color: #DAD3ED;}
 }
 
