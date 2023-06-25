@@ -14,15 +14,19 @@ const SEQUENCE_OPTIONS = ["🔴", "🟡", "🟢", "🔵"]
 
 let sequence = [];
 
-function tlUiChange() {
-    tlPiece.addClass("active-top-left");
-    setTimeout(function () {
-        tlPiece.removeClass("active-top-left");
-    }, btnFlashTiming)
+let clickable = true;
 
-    tlNote.load();
-    tlNote.play();
-}
+function tlUiChange() {
+    if (clickable) {
+        tlPiece.addClass("active-top-left");
+        setTimeout(function () {
+            tlPiece.removeClass("active-top-left");
+        }, btnFlashTiming)
+
+        tlNote.load();
+        tlNote.play();
+    }
+}//
 
 function trUiChange() {
     trPiece.addClass("active-top-right");
@@ -54,21 +58,23 @@ function brUiChange() {
     brNote.play();
 }
 
-tlPiece.on("click", function () {
-    tlUiChange();
-})
+function turnOnClickListener() {
+    tlPiece.on("click", function () {
+        tlUiChange();
+    })
 
-trPiece.on("click", function () {
-    trUiChange();
-})
+    trPiece.on("click", function () {
+        trUiChange();
+    })
 
-blPiece.on("click", function () {
-    blUiChange();
-})
+    blPiece.on("click", function () {
+        blUiChange();
+    })
 
-brPiece.on("click", function () {
-    brUiChange();
-})
+    brPiece.on("click", function () {
+        brUiChange();
+    })
+}
 
 
 function randBetweenFour() {
@@ -77,6 +83,11 @@ function randBetweenFour() {
 
 function playSequence() {
 
+    $(".piece").off("click");
+    setTimeout(() => {
+        turnOnClickListener();
+    }, sequence.length * 500);
+ 
     for (let i = 0; i < sequence.length; i++) {
         setTimeout(function () {
             switch (sequence[i]) {
@@ -95,11 +106,13 @@ function playSequence() {
                 default:
                     break;
             }
-        },i * 500);
+        }, i * 500);
     }
 }
+ 
 
 function gameLoop() {
+    turnOnClickListener();
     sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
     sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
     sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
@@ -109,14 +122,12 @@ function gameLoop() {
     // sequence.push("🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴");
     playSequence();
     console.log(sequence);
-    
+
 }
 
 
 gameLoop();
 
 
-
-// a
 
 
