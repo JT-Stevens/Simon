@@ -16,18 +16,24 @@ let sequence = [];
 
 let playerInput = [];
 
-let clickable = true;
+let score = 0;
+
+$(".modal-close-btn").on("click", function () {
+    reset();
+});
+
+$("#play-again").on("click", function () {
+    reset();
+});
 
 function tlUiChange() {
-    if (clickable) {
-        tlPiece.addClass("active-top-left");
-        setTimeout(function () {
-            tlPiece.removeClass("active-top-left");
-        }, btnFlashTiming)
+    tlPiece.addClass("active-top-left");
+    setTimeout(function () {
+        tlPiece.removeClass("active-top-left");
+    }, btnFlashTiming)
 
-        tlNote.load();
-        tlNote.play();
-    }
+    tlNote.load();
+    tlNote.play();
 }//
 
 function trUiChange() {
@@ -124,9 +130,11 @@ function selectPiece(piece) {
         console.log("correct piece");
         if (isPlayerTurnOver()) {
             //Next turn
+            score++;
+            $("#score-number").text(score);
             console.log("Next turn.");
             gameLoop();
-        } 
+        }
     } else {
         console.log("wrong piece");
         gameOver();
@@ -143,6 +151,17 @@ function isPlayerTurnOver() {
     return sequence.length === playerInput.length;
 }
 
+function share() {
+    navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? (fill in link here when I got it!)`);
+    
+    var copiedMessage = $("#copied-message");
+
+    copiedMessage.addClass("show");
+
+    setTimeout(function () { copiedMessage.removeClass("show"); }, 3000);
+}
+
+$("#share").on("click", share);
 
 function showMiddlePiece(piece) {
     $("#play").attr("hidden", !(piece.is($("#play"))));
@@ -160,18 +179,52 @@ function addOneToSequence() {
 
 function gameOver() {
     console.log("Game over!");
+    saveScore();
+    $("#game-over-score").text(score);
+    document.querySelector("#game-over").showModal();
+}
+
+function saveScore() {
+
+    if (localStorage.getItem("highScores") === null) {
+        localStorage.setItem("highScores", JSON.stringify([score]));
+    } else {
+
+        highScores = JSON.parse(localStorage.getItem("highScores"));
+
+        highScores.push(score);
+        highScores.sort(function (a, b) { return b - a });
+
+        localStorage.removeItem("highScores");
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+
+        displayHighScores();
+
+        console.log("High Scores:");
+        console.log(highScores);
+    }
+}
+
+function displayHighScores() {
+    let numbers = $(".hs-number");
+
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].textContent = highScores[i];
+    }
 }
 
 function playGame() {
     gameLoop();
-
 }
 
-function listen() {
-    // var soGoodSoFar = true;
-    // while (soGoodSoFar) {
-    //     console.log(sequence.toString() === playerInput.toString());
-    // }
+function reset() {
+    score = 0;
+    sequence = [];
+    playerInput = [];
+
+    document.querySelector("#game-over").close();
+
+    gameLoop();
 }
 
 function gameLoop() {
@@ -180,30 +233,12 @@ function gameLoop() {
     playSequence();
     playerInput = [];
 
-    // if (isPlayerInputCorrect()) {
-    //     //Check if next turn
-    //     if (isPlayerTurnCorrect()) {
-    //         //Next turn
-    //         console.log("Correct");
-    //     }
-    // } else {
-    //     //Game over
-    //     console.log("fail");
-    // }
-
-
-
-
 
     // sequence.push("🔴", "🟡", "🟢", "🔵");
     // sequence.push("🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴");
     console.log(sequence);
-    listen();
-
 }
 
-
-
-
+// document.querySelector("#game-over").showModal();
 
 // aaaaa

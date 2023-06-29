@@ -18,7 +18,9 @@ body {
     font-family: 'Righteous', cursive;
 }
 
-h1 {
+h1,
+h2,
+h3 {
 
     font-size: 10rem;
     margin: auto;
@@ -223,7 +225,7 @@ h1 {
     /* border: #555 solid 3px; */
 }
 
-.little-circle{
+.little-circle {
     width: 6.5em;
     height: 6.5em;
 
@@ -262,7 +264,7 @@ h1 {
 }
 
 
-#loading i{
+#loading i {
     margin: 0;
 
     position: relative;
@@ -306,6 +308,149 @@ h1 {
     box-shadow: none;
 }
 
+
+#game-over {
+    border: black solid;
+    border-radius: 1em;
+
+    /* background-color: #F7A4A4; */
+
+    /* background: linear-gradient(to top, rgba(247,164,164,1) 1%, rgba(185,255,252,1) 100%); */
+    background: rgb(222, 206, 255);
+    background: linear-gradient(to bottom, rgba(222, 206, 255, 1) 25%, rgba(185, 255, 252, 1) 100%);
+
+    /* color: white; */
+}
+
+.modal-close-btn {
+    all: unset;
+
+    cursor: pointer;
+
+    border: black solid;
+    border-width: 0 0 2px 2px;
+    border-radius: 0 15%;
+
+    width: 2em;
+    height: 2em;
+
+    font-size: 1.2em;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#game-over h2 {
+    font-size: 7rem;
+}
+
+.game-over-title {
+    border-bottom: black solid 1px;
+}
+
+.game-over-buttons {
+    border-top: black solid 1px;
+    padding: 1em;
+
+    display: flex;
+    justify-content: space-around;
+
+    position: relative;
+}
+
+.game-over-buttons button {
+    all: unset;
+
+    cursor: pointer;
+    border: black solid 1px;
+    border-radius: 1em;
+
+    padding: 5px;
+
+    width: 25%;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+th {
+    font-weight: 100;
+    border-bottom: solid black 1px;
+    padding: .5em;
+
+    font-size: 2em;
+}
+
+#play-again:hover {
+    background-color: #0e9d71;
+}
+
+#share:hover {
+    background-color: #e2fa42;
+}
+
+
+#game-over h3 {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+.high-score table {
+    margin: .5em auto;
+    border-spacing: 3em 1em;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+td:nth-child(even) {
+    padding-right: 1em;
+}
+
+#game-over::backdrop {
+    background:
+        linear-gradient(to top,
+            hsl(319.81, 77.44%, 73.92%) 0%,
+            hsla(314.8, 67.12%, 73.54%, 0.954) 9.5%,
+            hsla(308.06, 56.84%, 73.07%, 0.907) 17.6%,
+            hsla(298.65, 48.32%, 72.82%, 0.861) 24.7%,
+            hsla(287.74, 51.23%, 74.56%, 0.815) 30.9%,
+            hsla(276.66, 54.46%, 76.23%, 0.77) 36.4%,
+            hsla(265.52, 58.02%, 77.82%, 0.726) 41.4%,
+            hsla(254.4, 61.93%, 79.32%, 0.684) 46.2%,
+            hsla(243.4, 66.18%, 80.73%, 0.643) 50.9%,
+            hsla(233.44, 73.09%, 80.49%, 0.605) 55.7%,
+            hsla(226.29, 80.07%, 79.5%, 0.569) 61%,
+            hsla(221.05, 85.92%, 78.52%, 0.536) 66.8%,
+            hsla(217.12, 90.74%, 77.55%, 0.506) 73.4%,
+            hsla(214.15, 94.63%, 76.64%, 0.48) 81%,
+            hsla(211.9, 97.69%, 75.81%, 0.458) 89.8%,
+            hsla(210.24, 100%, 75.1%, 0.44) 100%);
+}
+
+#copied-message{
+    visibility: hidden;
+    position: absolute;
+    left: 70%;
+
+    transition: transform 1s, opacity 1s;
+
+}
+
+
+/* From https://www.w3schools.com/howto/howto_js_snackbar.asp */
+#copied-message.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    /* -webkit-animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s; */
+
+    transform: translateY(-50px);
+    opacity: 0;
+    position: absolute;
+  }
+  
 footer {
 
     position: relative;
