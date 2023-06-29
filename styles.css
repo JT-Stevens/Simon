@@ -25,7 +25,6 @@ h1 {
 
     color: #FF0000;
 
-
     text-shadow: 0 1px 0 #ccc,
         0 2px 0 #c9c9c9,
         0 3px 0 #bbb,
@@ -49,7 +48,7 @@ h1 {
 .piece {
     height: 19em;
     width: 19em;
-    
+
     z-index: 10;
 
     box-sizing: border-box;
@@ -69,16 +68,23 @@ h1 {
     margin: 0 2px 2px 0;
 }
 
-.active-top-left{
+.active-top-left {
     animation: tlFlash 250ms ease-in-out;
 }
 
 @keyframes tlFlash {
-    0% {background-color: #EDCFC7;
+    0% {
+        background-color: #EDCFC7;
         border: solid white 5px;
     }
-    50% {background-color: #f24432;}
-    100% {background-color: #EDCFC7;}
+
+    50% {
+        background-color: #f24432;
+    }
+
+    100% {
+        background-color: #EDCFC7;
+    }
 }
 
 /* Top Right Piece */
@@ -93,16 +99,23 @@ h1 {
     margin: 0 0 2px 2px;
 }
 
-.active-top-right{
+.active-top-right {
     animation: trFlash 250ms ease-in-out;
 }
 
 @keyframes trFlash {
-    0% {background-color: #EDEAC7;
+    0% {
+        background-color: #EDEAC7;
         border: solid white 5px;
     }
-    50% {background-color: #e2fa42;}
-    100% {background-color: #EDEAC7;}
+
+    50% {
+        background-color: #e2fa42;
+    }
+
+    100% {
+        background-color: #EDEAC7;
+    }
 }
 
 
@@ -115,19 +128,26 @@ h1 {
     border-bottom: 0;
     border-left: 0;
 
-    margin:  2px 2px 0 0;
+    margin: 2px 2px 0 0;
 }
 
-.active-bottom-left{
+.active-bottom-left {
     animation: blFlash 250ms ease-in-out;
 }
 
 @keyframes blFlash {
-    0% {background-color: #C7EDE1;
+    0% {
+        background-color: #C7EDE1;
         border: solid white 5px;
     }
-    50% {background-color: #0e9d71;}
-    100% {background-color: #C7EDE1;}
+
+    50% {
+        background-color: #0e9d71;
+    }
+
+    100% {
+        background-color: #C7EDE1;
+    }
 }
 
 
@@ -141,19 +161,26 @@ h1 {
     border-bottom: 0;
     border-right: 0;
 
-    margin:  2px 0 0 2px ;
+    margin: 2px 0 0 2px;
 }
 
-.active-bottom-right{
+.active-bottom-right {
     animation: brFlash 250ms ease-in-out;
 }
 
 @keyframes brFlash {
-    0% {background-color: #DAD3ED;
+    0% {
+        background-color: #DAD3ED;
         border: solid white 5px;
     }
-    50% {background-color: #704fc6;}
-    100% {background-color: #DAD3ED;}
+
+    50% {
+        background-color: #704fc6;
+    }
+
+    100% {
+        background-color: #DAD3ED;
+    }
 }
 
 .background-circle,
@@ -180,7 +207,7 @@ h1 {
             hsl(358.47, 69.9%, 56.83%) 91.9%,
             hsl(0, 70.91%, 56.86%) 100%);
 
-            background-color: black;
+    background-color: black;
 
 
     display: flex;
@@ -196,13 +223,28 @@ h1 {
     /* border: #555 solid 3px; */
 }
 
-.score {
+.little-circle{
+    width: 6.5em;
+    height: 6.5em;
+
+    position: absolute;
+
+    background-color: black;
+
+    z-index: 15;
+
+}
+
+#score,
+#play,
+#loading {
     position: absolute;
 
     width: 6em;
     height: 6em;
 
-    background-color: black;
+    /* background-color: rgb(35, 32, 32); */
+    background-image: linear-gradient(-45deg, #b0f8c4, #ef1150);
 
     z-index: 20;
 
@@ -212,24 +254,59 @@ h1 {
 
     text-align: center;
 
-    border: pink solid 5px;
+    /* border: rgb(73, 61, 128) solid 5px; */
 
     /* line-height: 1.25em; */
+
+    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
 }
 
-.score p,
-br {
+
+#loading i{
     margin: 0;
 
     position: relative;
     top: 25%;
+    font-size: 3em;
 
+}
+
+#score p {
+    margin: 0;
+
+    position: relative;
+    top: 25%;
     font-size: 1.5em;
 }
 
+#play button {
+    all: unset;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 50%;
 
+    position: relative;
+    margin: 0;
+    font-size: 3em;
+    top: 50%;
+    transform: translateY(-50%);
 
-footer{
+}
+
+#play-button i {
+    position: relative;
+    left: 3%;
+
+}
+
+#play-button:hover {
+    top: 48%;
+    box-shadow: none;
+}
+
+footer {
 
     position: relative;
     left: 100%;
@@ -244,4 +321,3 @@ footer{
     height: fit-content;
     text-align: center;
 }
-

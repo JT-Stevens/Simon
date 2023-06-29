@@ -14,6 +14,8 @@ const SEQUENCE_OPTIONS = ["🔴", "🟡", "🟢", "🔵"]
 
 let sequence = [];
 
+let playerInput = [];
+
 let clickable = true;
 
 function tlUiChange() {
@@ -61,33 +63,38 @@ function brUiChange() {
 function turnOnClickListener() {
     tlPiece.on("click", function () {
         tlUiChange();
+        selectPiece("🔴");
     })
 
     trPiece.on("click", function () {
         trUiChange();
+        selectPiece("🟡");
     })
 
     blPiece.on("click", function () {
         blUiChange();
+        selectPiece("🟢");
     })
 
     brPiece.on("click", function () {
         brUiChange();
+        selectPiece("🔵");
     })
 }
-
 
 function randBetweenFour() {
     return Math.floor(Math.random() * 4);
 }
 
 function playSequence() {
+    showMiddlePiece($("#loading"));
 
     $(".piece").off("click");
     setTimeout(() => {
         turnOnClickListener();
-    }, sequence.length * 500);
- 
+        showMiddlePiece($("#score"));
+    }, sequence.length * 500 + 750);
+
     for (let i = 0; i < sequence.length; i++) {
         setTimeout(function () {
             switch (sequence[i]) {
@@ -106,28 +113,97 @@ function playSequence() {
                 default:
                     break;
             }
-        }, i * 500);
+        }, i * 500 + 750);
     }
 }
- 
+
+function selectPiece(piece) {
+    playerInput.push(piece);
+    console.log("Player chose: " + playerInput[playerInput.length - 1]);
+    if (isPlayerInputCorrect()) {
+        console.log("correct piece");
+        if (isPlayerTurnOver()) {
+            //Next turn
+            console.log("Next turn.");
+            gameLoop();
+        } 
+    } else {
+        console.log("wrong piece");
+        gameOver();
+    }
+}
+
+// Check to see if the last piece selected is the same color in the sequence position.
+function isPlayerInputCorrect() {
+    return playerInput[playerInput.length - 1] === sequence[playerInput.length - 1];
+}
+
+// Check to see if the users turn is over by comparing the number of chosen pieces to pieces in the sequence.
+function isPlayerTurnOver() {
+    return sequence.length === playerInput.length;
+}
+
+
+function showMiddlePiece(piece) {
+    $("#play").attr("hidden", !(piece.is($("#play"))));
+
+    $("#loading").attr("hidden", !(piece.is($("#loading"))));
+
+    $("#score").attr("hidden", !(piece.is($("#score"))));
+}
+
+$("#play-button").on("click", playGame);
+
+function addOneToSequence() {
+    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+}
+
+function gameOver() {
+    console.log("Game over!");
+}
+
+function playGame() {
+    gameLoop();
+
+}
+
+function listen() {
+    // var soGoodSoFar = true;
+    // while (soGoodSoFar) {
+    //     console.log(sequence.toString() === playerInput.toString());
+    // }
+}
 
 function gameLoop() {
     turnOnClickListener();
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
-    sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
+    addOneToSequence();
+    playSequence();
+    playerInput = [];
+
+    // if (isPlayerInputCorrect()) {
+    //     //Check if next turn
+    //     if (isPlayerTurnCorrect()) {
+    //         //Next turn
+    //         console.log("Correct");
+    //     }
+    // } else {
+    //     //Game over
+    //     console.log("fail");
+    // }
+
+
+
+
+
     // sequence.push("🔴", "🟡", "🟢", "🔵");
     // sequence.push("🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴");
-    playSequence();
     console.log(sequence);
+    listen();
 
 }
 
 
-gameLoop();
 
 
 
-
+// aaaaa
