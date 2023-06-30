@@ -1,12 +1,12 @@
-var tlPiece = $(".top-left-quarter-circle");
-var trPiece = $(".top-right-quarter-circle");
-var blPiece = $(".bottom-left-quarter-circle");
-var brPiece = $(".bottom-right-quarter-circle");
+var redPiece = $(".red-piece");
+var yellowPiece = $(".yellow-piece");
+var greenPiece = $(".green-piece");
+var bluePiece = $(".blue-piece");
 
-var tlNote = new Audio("./Audio/C5_ff.flac");
-var trNote = new Audio("./Audio/G5_pp.flac");
-var blNote = new Audio("./Audio/G4_pp.flac");
-var brNote = new Audio("./Audio/C4_pp.flac");
+var redNote = new Audio("./Audio/C5_ff.flac");
+var yellowNote = new Audio("./Audio/G5_pp.flac");
+var greenNote = new Audio("./Audio/G4_pp.flac");
+var blueNote = new Audio("./Audio/C4_pp.flac");
 
 var btnFlashTiming = 250;
 
@@ -26,103 +26,114 @@ $("#play-again").on("click", function () {
     reset();
 });
 
-function tlUiChange() {
-    tlPiece.addClass("active-top-left");
+//Change the UI and play corresponding note when the RED piece is activated.
+function redPieceUiChange() {
+    redPiece.addClass("active-red-piece");
     setTimeout(function () {
-        tlPiece.removeClass("active-top-left");
+        redPiece.removeClass("active-red-piece");
     }, btnFlashTiming)
 
-    tlNote.load();
-    tlNote.play();
-}//
-
-function trUiChange() {
-    trPiece.addClass("active-top-right");
-    setTimeout(function () {
-        trPiece.removeClass("active-top-right");
-    }, btnFlashTiming)
-
-    trNote.load();
-    trNote.play();
+    redNote.load();
+    redNote.play();
 }
 
-function blUiChange() {
-    blPiece.addClass("active-bottom-left");
+//Change the UI and play corresponding note when the YELLOW piece is activated.
+function yellowPieceUiChange() {
+    yellowPiece.addClass("active-yellow-piece");
     setTimeout(function () {
-        blPiece.removeClass("active-bottom-left");
+        yellowPiece.removeClass("active-yellow-piece");
     }, btnFlashTiming)
 
-    blNote.load();
-    blNote.play();
+    yellowNote.load();
+    yellowNote.play();
 }
 
-function brUiChange() {
-    brPiece.addClass("active-bottom-right");
+//Change the UI and play corresponding note when the GREEN piece is activated.
+function greenPieceUiChange() {
+    greenPiece.addClass("active-green-piece");
     setTimeout(function () {
-        brPiece.removeClass("active-bottom-right");
+        greenPiece.removeClass("active-green-piece");
     }, btnFlashTiming)
 
-    brNote.load();
-    brNote.play();
+    greenNote.load();
+    greenNote.play();
 }
 
+//Change the UI and play corresponding note when the BLUE piece is activated.
+function bluePieceUiChange() {
+    bluePiece.addClass("active-blue-piece");
+    setTimeout(function () {
+        bluePiece.removeClass("active-blue-piece");
+    }, btnFlashTiming)
+
+    blueNote.load();
+    blueNote.play();
+}
+
+//Turn on the click event listeners for all the piece clicks.
 function turnOnClickListener() {
-    tlPiece.on("click", function () {
-        tlUiChange();
+    redPiece.on("click", function () {
+        redPieceUiChange();
         selectPiece("🔴");
     })
 
-    trPiece.on("click", function () {
-        trUiChange();
+    yellowPiece.on("click", function () {
+        yellowPieceUiChange();
         selectPiece("🟡");
     })
 
-    blPiece.on("click", function () {
-        blUiChange();
+    greenPiece.on("click", function () {
+        greenPieceUiChange();
         selectPiece("🟢");
     })
 
-    brPiece.on("click", function () {
-        brUiChange();
+    bluePiece.on("click", function () {
+        bluePieceUiChange();
         selectPiece("🔵");
     })
 }
 
+//Gives number between 0 and 3
 function randBetweenFour() {
     return Math.floor(Math.random() * 4);
 }
 
+//This is where the computer shows the player the sequence of pieces.
 function playSequence() {
+    //Shows the computer icon letting the player know to wait.
     showMiddlePiece($("#loading"));
 
+    //Turns off click event so the player cannot interrupt.
     $(".piece").off("click");
     setTimeout(() => {
         turnOnClickListener();
         showMiddlePiece($("#score"));
     }, sequence.length * 500 + 750);
 
+    //Goes through each piece in the sequence and shows the player.
     for (let i = 0; i < sequence.length; i++) {
         setTimeout(function () {
             switch (sequence[i]) {
                 case "🔴":
-                    tlUiChange();
+                    redPieceUiChange();
                     break;
                 case "🟡":
-                    trUiChange();
+                    yellowPieceUiChange();
                     break;
                 case "🟢":
-                    blUiChange();
+                    greenPieceUiChange();
                     break;
                 case "🔵":
-                    brUiChange();
+                    bluePieceUiChange();
                     break;
                 default:
                     break;
             }
-        }, i * 500 + 750);
+        }, i * 500 + 750); //Each note will go 500ms after each other. Starts after 750ms to give player time to focus.
     }
 }
 
+//Game logic when player selects a piece
 function selectPiece(piece) {
     playerInput.push(piece);
     console.log("Player chose: " + playerInput[playerInput.length - 1]);
@@ -133,7 +144,7 @@ function selectPiece(piece) {
             score++;
             $("#score-number").text(score);
             console.log("Next turn.");
-            gameLoop();
+            playGame();
         }
     } else {
         console.log("wrong piece");
@@ -151,6 +162,7 @@ function isPlayerTurnOver() {
     return sequence.length === playerInput.length;
 }
 
+//Copies a share message to the clipboard and displays message to user that message was copied.
 function share() {
     navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? (fill in link here when I got it!)`);
     
@@ -163,6 +175,7 @@ function share() {
 
 $("#share").on("click", share);
 
+//Toggles between middle displays: Play button, Computer icon, and Score.
 function showMiddlePiece(piece) {
     $("#play").attr("hidden", !(piece.is($("#play"))));
 
@@ -173,10 +186,12 @@ function showMiddlePiece(piece) {
 
 $("#play-button").on("click", playGame);
 
+//Adds a piece to list of pieces.
 function addOneToSequence() {
     sequence.push(SEQUENCE_OPTIONS[randBetweenFour()]);
 }
 
+//Display game over screen
 function gameOver() {
     console.log("Game over!");
     saveScore();
@@ -184,27 +199,32 @@ function gameOver() {
     document.querySelector("#game-over").showModal();
 }
 
+//Adds user score to local storage and receives past scores to display high scores on game over screen.
 function saveScore() {
 
-    if (localStorage.getItem("highScores") === null) {
+    if (localStorage.getItem("highScores") === null) { //No existing scores.
         localStorage.setItem("highScores", JSON.stringify([score]));
     } else {
 
+        //Gets existing scores
         highScores = JSON.parse(localStorage.getItem("highScores"));
 
+        //Add players latest score.
         highScores.push(score);
+
+        //Sorts the scores from highest to lowest.
         highScores.sort(function (a, b) { return b - a });
 
+        //Remove stored scores
         localStorage.removeItem("highScores");
+        //To replace them with updated scores
         localStorage.setItem("highScores", JSON.stringify(highScores));
 
         displayHighScores();
-
-        console.log("High Scores:");
-        console.log(highScores);
     }
 }
 
+//Fills in the high score table with players stored high scores.
 function displayHighScores() {
     let numbers = $(".hs-number");
 
@@ -213,10 +233,7 @@ function displayHighScores() {
     }
 }
 
-function playGame() {
-    gameLoop();
-}
-
+//Reset the game to play again.
 function reset() {
     score = 0;
     sequence = [];
@@ -225,23 +242,16 @@ function reset() {
     $("#score.number").text("0");
     $("#game-over-score").text("0");
 
-    document.querySelector("#game-over").close();
+    showMiddlePiece($("#play"));
 
-    gameLoop();
+    document.querySelector("#game-over").close();
 }
 
-function gameLoop() {
+
+//Starts game
+function playGame() {
     turnOnClickListener();
     addOneToSequence();
     playSequence();
     playerInput = [];
-
-
-    // sequence.push("🔴", "🟡", "🟢", "🔵");
-    // sequence.push("🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴");
-    console.log(sequence);
 }
-
-// document.querySelector("#game-over").showModal();
-
-// aaaaa
