@@ -248,9 +248,8 @@ function saveScore() {
         localStorage.removeItem("highScores");
         //To replace them with updated scores
         localStorage.setItem("highScores", JSON.stringify(highScores));
-
-        displayHighScores();
     }
+    displayHighScores();
 }
 
 //Fills in the high score table with players stored high scores.
