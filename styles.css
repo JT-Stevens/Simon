@@ -20,7 +20,7 @@ body {
 
     font-family: 'Righteous', cursive;
 
-    width: 80%;
+    /* width: 80%; */
 
 }
 
@@ -243,8 +243,12 @@ h3 {
         box-sizing: border-box;
     }
 
+
+}
+
+@media (max-width: 900px){
     .volume {
-        display: none;
+        visibility: hidden;
     }
 }
 
