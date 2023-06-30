@@ -222,6 +222,9 @@ function reset() {
     sequence = [];
     playerInput = [];
 
+    $("#score.number").text("0");
+    $("#game-over-score").text("0");
+
     document.querySelector("#game-over").close();
 
     gameLoop();
