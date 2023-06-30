@@ -1,7 +1,7 @@
 body {
     text-align: center;
 
-    background-image: url("./images/bg.png");
+    background-image: url("/images/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -246,7 +246,7 @@ h3 {
 
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
     .volume {
         visibility: hidden;
     }
@@ -573,6 +573,7 @@ input[type="range"].slider {
     border-radius: 1em;
 
 }
+
 .volume:hover slider::-ms-thumb:slide .slider::-moz-range-thumb {
     width: 2em;
     height: 2em;
@@ -589,7 +590,10 @@ footer {
     align-items: stretch;
     justify-items: flex-end;
 
-    width: 100%;
+    margin-top: 2em;
+    margin-right: 2em;
+
+    width: 80%;
 
     gap: .5em;
 }

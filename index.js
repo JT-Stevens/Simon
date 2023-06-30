@@ -193,7 +193,7 @@ function isPlayerTurnOver() {
 
 //Copies a share message to the clipboard and displays message to user that message was copied.
 function share() {
-    navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? (fill in link here when I got it!)`);
+    navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? https://jt-stevens.github.io/Simon/`);
 
     var copiedMessage = $("#copied-message");
 
@@ -268,7 +268,7 @@ function reset() {
     sequence = [];
     playerInput = [];
 
-    $("#score.number").text("0");
+    $("#score-number").text("0");
     $("#game-over-score").text("0");
 
     showMiddlePiece($("#play"));
