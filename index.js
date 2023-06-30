@@ -18,6 +18,35 @@ let playerInput = [];
 
 let score = 0;
 
+//Initiate volume settings
+getLocalVolumeSettings();
+
+function getLocalVolumeSettings() {
+    //If no settings exist then add default value
+    if (localStorage.getItem("volume") === null) {
+        localStorage.setItem("volume", $("#volume-range").val() / 100);
+    } else {
+        $("#volume-range").val(localStorage.getItem("volume"));
+    }
+
+    changeVolume(localStorage.getItem("volume") / 100);
+}
+
+//Change volume based off volume slider.
+$("#volume-range").on("input", function () {
+    var volume = this.value ;
+    changeVolume(volume / 100);
+    localStorage.setItem("volume", volume);
+});
+
+
+function changeVolume(amount) {
+    redNote.volume = amount;
+    yellowNote.volume = amount;
+    greenNote.volume = amount;
+    blueNote.volume = amount;
+}
+
 $(".modal-close-btn").on("click", function () {
     reset();
 });
@@ -165,7 +194,7 @@ function isPlayerTurnOver() {
 //Copies a share message to the clipboard and displays message to user that message was copied.
 function share() {
     navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? (fill in link here when I got it!)`);
-    
+
     var copiedMessage = $("#copied-message");
 
     copiedMessage.addClass("show");

@@ -11,9 +11,8 @@ body {
 
     position: relative;
 
+    /* display: grid; */
 
-
-    display: grid;
 
     height: fit-content;
 
@@ -21,6 +20,12 @@ body {
 
     font-family: 'Righteous', cursive;
 
+    width: 80%;
+
+}
+
+h1 {
+    display: inline-flex;
 }
 
 h1,
@@ -60,7 +65,7 @@ h3 {
 /* Top Left Piece */
 .red-piece {
     background-color: #EDCFC7;
-    
+
     border-radius: 100% 0 0 0;
     border-top: 0;
     border-left: 0;
@@ -90,7 +95,7 @@ h3 {
 /* Top Right Piece */
 .yellow-piece {
     background-color: #EDEAC7;
-    
+
     border-radius: 0 100% 0 0;
     border-top: 0;
     border-right: 0;
@@ -121,7 +126,7 @@ h3 {
 /* Bottom Left Piece */
 .green-piece {
     background-color: #C7EDE1;
-    
+
     border-radius: 0 0 0 100%;
     border-bottom: 0;
     border-left: 0;
@@ -152,7 +157,7 @@ h3 {
 /* Bottom Right Piece */
 .blue-piece {
     background-color: #DAD3ED;
-    
+
     border-radius: 0 0 100% 0;
     border-bottom: 0;
     border-right: 0;
@@ -236,6 +241,10 @@ h3 {
         z-index: 10;
 
         box-sizing: border-box;
+    }
+
+    .volume {
+        display: none;
     }
 }
 
@@ -441,6 +450,134 @@ td:nth-child(even) {
     opacity: 0;
     position: absolute;
 }
+
+.volume {
+    /* position: absolute; */
+    /* top: 3em; */
+    /* right: 13em; */
+    /* left: 75%; */
+    /* right: 25%; */
+
+    margin: 0;
+    margin-left: 80%;
+    transform: rotate(90deg);
+    transform-origin: 0 0;
+
+    color: white;
+
+    align-self: center;
+
+    text-shadow: 0.05em 0 navy, 0 0.05em navy, -0.05em 0 navy, 0 -0.05em navy, -0.05em -0.05em navy, -0.05em 0.05em navy, 0.05em -0.05em navy, 0.05em 0.05em navy;
+
+    display: flex;
+
+    /* display: block; */
+    /* flex-direction: column; */
+
+    border: solid black 1px;
+    border-radius: 1em;
+
+    /* padding: 0 3px; */
+
+    background:
+
+        linear-gradient(to right,
+            hsl(330, 100%, 83.92%) 0%,
+            hsl(329.17, 96.83%, 83.68%) 8.1%,
+            hsl(326.64, 88.3%, 83%) 15.5%,
+            hsl(322.13, 76.16%, 81.93%) 22.5%,
+            hsl(314.81, 62.13%, 80.51%) 29%,
+            hsl(302.85, 47.59%, 78.77%) 35.3%,
+            hsl(285.96, 48.72%, 79.13%) 41.2%,
+            hsl(269.14, 53.68%, 80.01%) 47.1%,
+            hsl(252.91, 59.11%, 80.88%) 52.9%,
+            hsl(237.6, 65.78%, 81.24%) 58.8%,
+            hsl(226.8, 75.58%, 79.05%) 64.7%,
+            hsl(219.95, 82.94%, 76.82%) 71%,
+            hsl(215.39, 88.25%, 74.67%) 77.5%,
+            hsl(212.38, 91.82%, 72.81%) 84.5%,
+            hsl(210.6, 93.9%, 71.48%) 91.9%,
+            hsl(210, 94.59%, 70.98%) 100%);
+
+    /* width: auto; */
+
+    width: 2em;
+    transition: width 1s;
+}
+
+.volume:hover {
+    width: 10em;
+}
+
+.volume button {
+    all: unset;
+    cursor: pointer;
+    height: 2em;
+
+    width: 2em;
+
+    transform: rotate(-90deg);
+}
+
+input[type="range"].slider {
+
+    position: relative;
+
+    margin: 0;
+    padding: 0;
+
+    width: 0em;
+    transition: width .8s;
+
+    appearance: none;
+
+    background-color: #ffffff5a;
+
+    border-radius: 1em;
+
+}
+
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 0em;
+    transition: width .5s, height .5s;
+    height: 0em;
+    background: #0e9d722c;
+    cursor: grab;
+
+    border: #0e9d71 solid 1px;
+    border-radius: 1em;
+
+}
+
+.volume:hover .slider::-webkit-slider-thumb {
+    width: 2em;
+    height: 2em;
+}
+
+.slider::-ms-thumb:slide .slider::-moz-range-thumb {
+    width: 0em;
+    transition: width .5s, height .5s;
+    height: 0em;
+    background: #ffffff08;
+    cursor: grab;
+
+    border: black solid 1px;
+    border-radius: 1em;
+
+}
+.volume:hover slider::-ms-thumb:slide .slider::-moz-range-thumb {
+    width: 2em;
+    height: 2em;
+}
+
+.volume:hover .slider {
+    width: 100%;
+}
+
 
 footer {
     display: flex;

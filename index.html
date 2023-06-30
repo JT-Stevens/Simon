@@ -17,25 +17,30 @@
 
 <body>
     <h1>simon</h1>
-
+    <div class="volume">
+        <button type="button">
+            <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <input type="range" min="1" max="100" value="50" class="slider" id="volume-range">
+    </div>
     <div class="background-circle">
-            <div class="piece red-piece"></div>
-            <div class="piece yellow-piece"></div>
-            <div class="piece green-piece"></div>
-            <div class="piece blue-piece"></div>
+        <div class="piece red-piece"></div>
+        <div class="piece yellow-piece"></div>
+        <div class="piece green-piece"></div>
+        <div class="piece blue-piece"></div>
 
-            <div class="background-circle little-circle">
-            </div>
-            <div id="play">
-                <button id="play-button"><i class="fa-solid fa-play"></i></button>
-            </div>
-            <div hidden id="loading">
-                <i class="fa-solid fa-robot"></i>
-            </div>
-            <div hidden id="score">
-                <p>Score:</p>
-                <p id="score-number">0</p>
-            </div>
+        <div class="background-circle little-circle">
+        </div>
+        <div id="play">
+            <button id="play-button"><i class="fa-solid fa-play"></i></button>
+        </div>
+        <div hidden id="loading">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+        <div hidden id="score">
+            <p>Score:</p>
+            <p id="score-number">0</p>
+        </div>
     </div>
 
     <dialog id="game-over">
