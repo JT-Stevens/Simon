@@ -34,7 +34,7 @@ function getLocalVolumeSettings() {
 
 //Change volume based off volume slider.
 $("#volume-range").on("input", function () {
-    var volume = this.value ;
+    var volume = this.value;
     changeVolume(volume / 100);
     localStorage.setItem("volume", volume);
 });
@@ -230,9 +230,10 @@ function gameOver() {
 
 //Adds user score to local storage and receives past scores to display high scores on game over screen.
 function saveScore() {
-
+    let highScores = [];
     if (localStorage.getItem("highScores") === null) { //No existing scores.
         localStorage.setItem("highScores", JSON.stringify([score]));
+        highScores.push(score);
     } else {
 
         //Gets existing scores
@@ -249,11 +250,11 @@ function saveScore() {
         //To replace them with updated scores
         localStorage.setItem("highScores", JSON.stringify(highScores));
     }
-    displayHighScores();
+    displayHighScores(highScores);
 }
 
 //Fills in the high score table with players stored high scores.
-function displayHighScores() {
+function displayHighScores(highScores) {
     let numbers = $(".hs-number");
 
     for (let i = 0; i < numbers.length; i++) {
