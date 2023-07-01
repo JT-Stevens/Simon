@@ -320,4 +320,4 @@ function playGame() {
 }
 
 
-document.querySelector("#game-over").showModal();
+// document.querySelector("#game-over").showModal();
