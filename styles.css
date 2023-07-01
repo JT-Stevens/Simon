@@ -21,7 +21,7 @@ body {
     font-family: 'Righteous', cursive;
 
     /* width: 80%; */
-
+    font-size: .8em;
 }
 
 h1 {
@@ -50,6 +50,36 @@ h3 {
         0 20px 20px rgba(0, 0, 0, .15);
 
     cursor: default;
+}
+
+.settings-button {
+    margin: 3em;
+
+    position: absolute;
+    right: 0;
+}
+
+.settings-button button {
+    all: unset;
+    cursor: pointer;
+
+    font-size: 3.5em;
+
+    background: rgb(167, 188, 4);
+    background: linear-gradient(133deg, rgba(167, 188, 4, 1) 28%, rgba(242, 67, 154, 1) 61%, rgba(72, 0, 36, 1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    height: fit-content;
+    width: fit-content;
+
+    transition: transform 100ms linear;
+}
+
+.settings-button:hover button {
+    transform: rotate(25deg);
 }
 
 .piece {
@@ -185,8 +215,8 @@ h3 {
 }
 
 .background-circle {
-    width: 39rem;
-    height: 39rem;
+    width: 39em;
+    height: 39em;
 
     background-image:
         linear-gradient(to bottom right,
@@ -227,9 +257,9 @@ h3 {
         font-size: 6.5em;
     }
 
-    .background-circle {
-        width: 20rem;
-        height: 20rem;
+    /* .background-circle {
+        width: 20em;
+        height: 20em;
 
         margin: auto;
     }
@@ -241,15 +271,7 @@ h3 {
         z-index: 10;
 
         box-sizing: border-box;
-    }
-
-
-}
-
-@media (max-width: 900px) {
-    .volume {
-        visibility: hidden;
-    }
+    } */
 }
 
 .little-circle {
@@ -325,9 +347,11 @@ h3 {
 }
 
 
-#game-over {
+.modal {
     border: black solid;
-    border-radius: 1em;
+    border-radius: .5em;
+    /* box-sizing: border-box; */
+
 
     background: rgb(222, 206, 255);
     background: linear-gradient(to bottom, rgba(222, 206, 255, 1) 25%, rgba(185, 255, 252, 1) 100%);
@@ -340,7 +364,7 @@ h3 {
 
     border: black solid;
     border-width: 0 0 2px 2px;
-    border-radius: 0 15%;
+    border-radius: 0 0 0 15%;
 
     width: 2em;
     height: 2em;
@@ -352,7 +376,7 @@ h3 {
     right: 0;
 }
 
-#game-over h2 {
+.modal h2 {
     font-size: 7rem;
 }
 
@@ -402,7 +426,7 @@ th {
 }
 
 
-#game-over h3 {
+.modal h3 {
     font-size: 3em;
     margin-bottom: 1em;
 }
@@ -418,7 +442,7 @@ td:nth-child(even) {
     padding-right: 1em;
 }
 
-#game-over::backdrop {
+.modal::backdrop {
     background:
         linear-gradient(to top,
             hsl(319.81, 77.44%, 73.92%) 0%,
@@ -439,6 +463,13 @@ td:nth-child(even) {
             hsla(210.24, 100%, 75.1%, 0.44) 100%);
 }
 
+.modal-close-btn:hover {
+    background-color: #00000032;
+    color: white;
+    text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+
 #copied-message {
     visibility: hidden;
     position: absolute;
@@ -456,15 +487,11 @@ td:nth-child(even) {
 }
 
 .volume {
-    /* position: absolute; */
-    /* top: 3em; */
-    /* right: 13em; */
-    /* left: 75%; */
-    /* right: 25%; */
 
-    margin: 0;
-    margin-left: 80%;
-    transform: rotate(90deg);
+    text-align: center;
+
+    margin: 1em 2em;
+
     transform-origin: 0 0;
 
     color: white;
@@ -475,18 +502,14 @@ td:nth-child(even) {
 
     display: flex;
 
-    /* display: block; */
-    /* flex-direction: column; */
 
     border: solid black 1px;
     border-radius: 1em;
 
-    /* padding: 0 3px; */
-
     background:
 
         linear-gradient(to right,
-            hsl(330, 100%, 83.92%) 0%,
+            hsl(330, 100%, 84%) 0%,
             hsl(329.17, 96.83%, 83.68%) 8.1%,
             hsl(326.64, 88.3%, 83%) 15.5%,
             hsl(322.13, 76.16%, 81.93%) 22.5%,
@@ -501,9 +524,7 @@ td:nth-child(even) {
             hsl(215.39, 88.25%, 74.67%) 77.5%,
             hsl(212.38, 91.82%, 72.81%) 84.5%,
             hsl(210.6, 93.9%, 71.48%) 91.9%,
-            hsl(210, 94.59%, 70.98%) 100%);
-
-    /* width: auto; */
+            hsl(210, 95%, 71%) 100%);
 
     width: 2em;
     transition: width 1s;
@@ -520,7 +541,6 @@ td:nth-child(even) {
 
     width: 2em;
 
-    transform: rotate(-90deg);
 }
 
 input[type="range"].slider {
@@ -562,25 +582,77 @@ input[type="range"].slider {
     height: 2em;
 }
 
-.slider::-ms-thumb:slide .slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
+    appearance: none;
+
     width: 0em;
-    transition: width .5s, height .5s;
+    transition: width .5s, height .5s, visibility .5s;
     height: 0em;
-    background: #ffffff08;
+    background: #0e9d722c;
     cursor: grab;
 
-    border: black solid 1px;
+    border: #0e9d71 solid 1px;
     border-radius: 1em;
 
+    visibility: collapse;
 }
 
-.volume:hover slider::-ms-thumb:slide .slider::-moz-range-thumb {
+.volume:hover .slider::-moz-range-thumb {
     width: 2em;
     height: 2em;
+    visibility: visible;
 }
 
 .volume:hover .slider {
     width: 100%;
+}
+
+#settings {
+    text-align: start;
+    width: 40%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#settings h3 {
+    align-self: flex-start;
+    margin: 0;
+}
+
+.gold {
+    background: linear-gradient(to bottom left, #f2439a, #a7bc04);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 1.3em;
+
+    -webkit-text-fill-color: transparent;
+}
+
+#settings ul {
+    list-style: none;
+}
+
+#settings li {
+    padding-left: 1em;
+    text-indent: -1em;
+    margin: .5em 0;
+}
+
+#settings li i {
+    text-indent: 0em;
+}
+
+#settings li::before {
+    content: "-";
+    padding-right: .5em;
+}
+
+#settings li li::before {
+    content: "*";
+}
+
+#settings .modal-close-btn {
+    text-align: center;
+
 }
 
 
@@ -596,4 +668,45 @@ footer {
     width: 80%;
 
     gap: .5em;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+
+    background: linear-gradient(to bottom,
+            hsl(330, 100%, 84%) 0%,
+            hsl(329.17, 96.83%, 83.68%) 8.1%,
+            hsl(326.64, 88.3%, 83%) 15.5%,
+            hsl(322.13, 76.16%, 81.93%) 22.5%,
+            hsl(314.81, 62.13%, 80.51%) 29%,
+            hsl(302.85, 47.59%, 78.77%) 35.3%,
+            hsl(285.96, 48.72%, 79.13%) 41.2%,
+            hsl(269.14, 53.68%, 80.01%) 47.1%,
+            hsl(252.91, 59.11%, 80.88%) 52.9%,
+            hsl(237.6, 65.78%, 81.24%) 58.8%,
+            hsl(226.8, 75.58%, 79.05%) 64.7%,
+            hsl(219.95, 82.94%, 76.82%) 71%,
+            hsl(215.39, 88.25%, 74.67%) 77.5%,
+            hsl(212.38, 91.82%, 72.81%) 84.5%,
+            hsl(210.6, 93.9%, 71.48%) 91.9%,
+            hsl(210, 95%, 71%) 100%);
+
+    border-radius: 5px;
+    padding-right: 5em;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #39d4ff37;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00303d7d;
+    border-radius: 5px;
 }

@@ -20,11 +20,14 @@ let score = 0;
 
 //Initiate volume settings
 getLocalVolumeSettings();
+//Show how to play if this is players first viewing.
+openSettingsIfFirstView();
 
 function getLocalVolumeSettings() {
     //If no settings exist then add default value
     if (localStorage.getItem("volume") === null) {
-        localStorage.setItem("volume", $("#volume-range").val() / 100);
+        localStorage.setItem("volume", 50);
+        console.log($("#volume-range").val() / 100);
     } else {
         $("#volume-range").val(localStorage.getItem("volume"));
     }
@@ -45,15 +48,29 @@ function changeVolume(amount) {
     yellowNote.volume = amount;
     greenNote.volume = amount;
     blueNote.volume = amount;
+
+    console.log(blueNote.volume);
 }
 
-$(".modal-close-btn").on("click", function () {
-    reset();
+$("#open-settings").on("click", function () {
+    document.querySelector("#settings").showModal();
 });
 
-$("#play-again").on("click", function () {
-    reset();
+$("#settings-close").on("click", function () {
+    document.querySelector("#settings").close();
 });
+
+$("#game-over-close").on("click", reset);
+
+$("#play-again").on("click", reset);
+
+//Show how to play if this is players first viewing.
+function openSettingsIfFirstView() {
+    if (localStorage.getItem("seenSettings") === null) {
+        document.querySelector("#settings").showModal();
+        localStorage.setItem("seenSettings", true)
+    }
+}
 
 //Change the UI and play corresponding note when the RED piece is activated.
 function redPieceUiChange() {
