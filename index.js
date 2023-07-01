@@ -209,7 +209,7 @@ function isPlayerTurnOver() {
 }
 
 //Copies a share message to the clipboard and displays message to user that message was copied.
-function share() {
+function copy() {
     navigator.clipboard.writeText(`Can you beat my score of ${score} on simon!? https://jt-stevens.github.io/Simon/`);
 
     var copiedMessage = $("#copied-message");
@@ -219,7 +219,24 @@ function share() {
     setTimeout(function () { copiedMessage.removeClass("show"); }, 3000);
 }
 
-$("#share").on("click", share);
+$("#copy").on("click", copy);
+
+async function shareScore() {
+    const shareData = {
+        title: "Simon",
+        text: `Can you beat my score of ${score} on simon!?`,
+        url: "https://jt-stevens.github.io/Simon/",
+    };
+    try {
+        await navigator.share(shareData);
+        console.log("score shared successfully");
+    } catch (err) {
+        console.log(`Error: ${err}`); 
+    }
+}
+
+$("#share").on("click", shareScore);
+
 
 //Toggles between middle displays: Play button, Computer icon, and Score.
 function showMiddlePiece(piece) {
@@ -303,4 +320,4 @@ function playGame() {
 }
 
 
-// document.querySelector("#settings").showModal();
+document.querySelector("#game-over").showModal();

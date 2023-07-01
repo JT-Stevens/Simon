@@ -360,10 +360,11 @@ h3 {
 }
 
 .modal h2 {
-    font-size: 7rem;
+    font-size: 7em;
 }
 
-.modal p, .modal li{
+.modal p,
+.modal li {
     font-size: 1rem;
 }
 
@@ -410,6 +411,10 @@ th {
 
 #share:hover {
     background-color: #e2fa42;
+}
+
+#copy:hover{
+    background-color: #704fc6;
 }
 
 
@@ -460,7 +465,7 @@ td:nth-child(even) {
 #copied-message {
     visibility: hidden;
     position: absolute;
-    left: 70%;
+    left: 76%;
 
     transition: transform 1s, opacity 1s;
 }
@@ -700,14 +705,29 @@ footer {
 
 @media (max-width: 801px) {
     .modal {
-        width: 100%;
+        width: 60%;
+        font-size: 1rem;
     }
+
+    .modal h2{
+        font-size: 3em;
+    }
+
+    .modal h3{
+        font-size: 2em;
+    }
+
+    /* .modal li{
+        font-size: 1rem;
+    } */
+
+    h2 {}
 
     #settings {
-        width: 100%;
+        width: 90%;
     }
 
-    body{
+    body {
         font-size: .5rem;
     }
 
