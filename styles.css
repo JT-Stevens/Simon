@@ -21,17 +21,20 @@ body {
     font-family: 'Righteous', cursive;
 
     /* width: 80%; */
-    font-size: .8em;
+    font-size: .7rem;
+
+
 }
 
 h1 {
     display: inline-flex;
+    padding-bottom: .5em;
 }
 
 h1,
 h2,
 h3 {
-    font-size: 10rem;
+    font-size: 10em;
     margin: auto;
 
     color: #FF0000;
@@ -83,8 +86,8 @@ h3 {
 }
 
 .piece {
-    height: 19em;
-    width: 19em;
+    height: 18.5em;
+    width: 18.5em;
 
     z-index: 10;
 
@@ -252,27 +255,7 @@ h3 {
     position: relative;
 }
 
-@media (max-width: 600px) or (max-height: 600px) {
-    h1 {
-        font-size: 6.5em;
-    }
 
-    /* .background-circle {
-        width: 20em;
-        height: 20em;
-
-        margin: auto;
-    }
-
-    .piece {
-        height: 9.5em;
-        width: 9.5em;
-
-        z-index: 10;
-
-        box-sizing: border-box;
-    } */
-}
 
 .little-circle {
     width: 6.5em;
@@ -378,6 +361,10 @@ h3 {
 
 .modal h2 {
     font-size: 7rem;
+}
+
+.modal p, .modal li{
+    font-size: 1rem;
 }
 
 .game-over-title {
@@ -709,4 +696,19 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: #00303d7d;
     border-radius: 5px;
+}
+
+@media (max-width: 801px) {
+    .modal {
+        width: 100%;
+    }
+
+    #settings {
+        width: 100%;
+    }
+
+    body{
+        font-size: .5rem;
+    }
+
 }

@@ -301,3 +301,6 @@ function playGame() {
     playSequence();
     playerInput = [];
 }
+
+
+// document.querySelector("#settings").showModal();
