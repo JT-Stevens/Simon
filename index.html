@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The simple game of Simon.">
     <title>Simon Game</title>
     <link rel="icon" type="Images/x-icon" href="Images/favicon-32x32.png">
 
@@ -14,13 +15,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/ea94ec15a5.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
 
     <div class="settings-button">
-        <button type="button" id="open-settings">
+        <button type="button" id="open-settings" aria-label="Open settings menu">
             <i class="fa-solid fa-gear"></i>
     </button>
     </div>
@@ -35,7 +36,7 @@
         <div class="background-circle little-circle">
         </div>
         <div id="play">
-            <button id="play-button"><i class="fa-solid fa-play"></i></button>
+            <button id="play-button" type="button" aria-label="Press to play"><i class="fa-solid fa-play"></i></button>
         </div>
         <div hidden id="loading">
             <i class="fa-solid fa-robot"></i>
@@ -174,6 +175,7 @@
         <a href="https://github.com/JT-Stevens">Github</a>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/ea94ec15a5.js" crossorigin="anonymous"></script>
     <script src="./index.js"></script>
 </body>
 
