@@ -321,3 +321,4 @@ function playGame() {
 
 
 // document.querySelector("#game-over").showModal();
+// document.querySelector("#settings").showModal();
